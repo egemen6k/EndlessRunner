@@ -3,16 +3,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MoveController : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
     [SerializeField]
     private float _laneDistance = 4f;
-    public float _speed = 5f;
+    [SerializeField]
+    private float _speed = 5f;
+
     private CharacterController _cc;
     private IGetInput GetInput;
     private IGetLane GetLane;
+    private IGetJump GetJump;
     private int _desiredLane = 1; //0: left, 1: middle, 2: right
     private Vector3 _velocity;
+
+
 
     void Start()
     {
@@ -34,17 +39,22 @@ public class MoveController : MonoBehaviour
             Debug.LogError("Lane Selection Interface is null");
         }
 
+        GetJump = GetComponent<IGetJump>();
+        if (GetJump == null)
+        {
+            Debug.LogError("Jumping interface is null");
+        }
+
+        _velocity = Vector3.forward * _speed;
     }
 
     private void Update()
     {
         _desiredLane = GetInput.GetLane(_desiredLane);
-        transform.position = GetLane.GetLane(_desiredLane, _laneDistance);
+        transform.position = GetLane.GetPosition(_desiredLane, _laneDistance);
         _cc.center = _cc.center;
-    }
-    void FixedUpdate()
-    {
-        _velocity = Vector3.forward * _speed;
-        _cc.Move(_velocity * Time.fixedDeltaTime);
+
+        _velocity = GetJump.Jump(_velocity);
+        _cc.Move(_velocity * Time.deltaTime);
     }
 }
