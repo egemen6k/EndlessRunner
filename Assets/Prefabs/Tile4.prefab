@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 89037230390071277}
   m_Layer: 0
   m_Name: Tile4
-  m_TagString: Untagged
+  m_TagString: Respawn
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -56,8 +56,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.0139999995, y: 0.013999997, z: 0.15377478}
-  m_Center: {x: 0, y: 0, z: 0.06988739}
+  m_Size: {x: 0.0035031603, y: 0.013999998, z: 0.15377478}
+  m_Center: {x: 0.00017877102, y: -3.52103e-18, z: 0.06988739}
 --- !u!1001 &89037231488994296
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -205,6 +205,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: TrafficCone
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 924347fe83e55a246b22d1d1bb33ce8d,
+        type: 3}
+      propertyPath: m_TagString
+      value: Obstacle
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 924347fe83e55a246b22d1d1bb33ce8d, type: 3}

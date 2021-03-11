@@ -13,5 +13,9 @@ Runner Game
 +Object pooler implemented for 6 different tile
 +TileManager implemented
 -----
-
++Singleton ObjectPooler problem fixed
++Dictionary implementation was in Start(), moved to the Awake().
++Replay,Quit functions implemented.
++UI Panel implemented.
+-----
 

@@ -13,19 +13,13 @@ public class ObjectPooler : MonoBehaviour
     }
 
     public static ObjectPooler Instance;
+    public Dictionary<string, Queue<GameObject>> poolDictionary;
+    public List<Pool> pools;
 
     #region Singleton
     private void Awake()
     {
         Instance = this;
-    }
-    #endregion
-
-    public Dictionary<string, Queue<GameObject>> poolDictionary;
-    public List<Pool> pools;
-
-    void Start()
-    {
         poolDictionary = new Dictionary<string, Queue<GameObject>>();
 
         foreach (Pool pool in pools)
@@ -34,26 +28,26 @@ public class ObjectPooler : MonoBehaviour
             for (int i = 0; i < pool.size; i++)
             {
                 GameObject obj = Instantiate(pool.prefab);
-                //obj.hideFlags = HideFlags.HideInHierarchy;
+                obj.hideFlags = HideFlags.HideInHierarchy;
                 obj.SetActive(false);
                 objectPool.Enqueue(obj);
             }
-            poolDictionary.Add(pool.tag, objectPool);
+        poolDictionary.Add(pool.tag, objectPool);
         }
     }
+    #endregion
 
     public GameObject SpawnFromPool(string tag, Vector3 position, Quaternion rotation)
-    {
-        if (!poolDictionary.ContainsKey(tag))
-        {
-            Debug.LogError("Pool with tag: " + tag + "is null.");
-        }
-        GameObject objectToSpawn = poolDictionary[tag].Dequeue();
-        objectToSpawn.SetActive(true);
-        objectToSpawn.transform.position = position;
-        objectToSpawn.transform.rotation = rotation;
-        poolDictionary[tag].Enqueue(objectToSpawn);
-        return objectToSpawn;
+    {     
+            if (!poolDictionary.ContainsKey(tag))
+            {
+                Debug.LogError("Pool with tag: " + tag + "is null.");
+            }
+            GameObject objectToSpawn = poolDictionary[tag].Dequeue();
+            objectToSpawn.SetActive(true);
+            objectToSpawn.transform.position = position;
+            objectToSpawn.transform.rotation = rotation;
+            poolDictionary[tag].Enqueue(objectToSpawn);
+            return objectToSpawn; 
     }
 }
-

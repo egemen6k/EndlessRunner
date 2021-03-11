@@ -14,10 +14,8 @@ public class PlayerController : MonoBehaviour
     private IGetInput GetInput;
     private IGetLane GetLane;
     private IGetJump GetJump;
-    private int _desiredLane = 1; //0: left, 1: middle, 2: right
     private Vector3 _velocity;
-
-
+    private int _desiredLane = 1; //0: left, 1: middle, 2: right
 
     void Start()
     {
@@ -44,7 +42,6 @@ public class PlayerController : MonoBehaviour
         {
             Debug.LogError("Jumping interface is null");
         }
-
         _velocity = Vector3.forward * _speed;
     }
 
@@ -53,7 +50,6 @@ public class PlayerController : MonoBehaviour
         _desiredLane = GetInput.GetLane(_desiredLane);
         transform.position = GetLane.GetPosition(_desiredLane, _laneDistance);
         _cc.center = _cc.center;
-
         _velocity = GetJump.Jump(_velocity);
         _cc.Move(_velocity * Time.deltaTime);
     }

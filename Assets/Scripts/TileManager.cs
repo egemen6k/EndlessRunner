@@ -11,13 +11,13 @@ public class TileManager : MonoBehaviour
     private float _zSpawn = 0f;
     private float tileLength = 30f;
     private int numberOfTiles = 5;
-    private int _talesSize;
+    public int _talesSize = 6;
 
-    private List<GameObject> _activeTiles;
+    public List<GameObject> _activeTiles;
 
     void Start()
     {
-        objectPooler = ObjectPooler.Instance;
+        objectPooler = ObjectPooler.Instance; 
         _talesSize = objectPooler.poolDictionary.Count;
         _activeTiles = new List<GameObject>();
 
@@ -32,6 +32,7 @@ public class TileManager : MonoBehaviour
                 SpawnTile(Random.Range(0, _talesSize));
             }
         }
+
     }
 
     void Update()
@@ -45,9 +46,9 @@ public class TileManager : MonoBehaviour
 
     public void SpawnTile(int tileIndex)
     {
-        GameObject pooled = objectPooler.SpawnFromPool(tileIndex.ToString(), transform.forward * _zSpawn, transform.rotation);
-        _zSpawn += tileLength;
-        _activeTiles.Add(pooled);
+            GameObject pooled = objectPooler.SpawnFromPool(tileIndex.ToString(), transform.forward * _zSpawn, transform.rotation);
+            _zSpawn += tileLength;
+            _activeTiles.Add(pooled);
     }
 
     private void DeleteTile()
