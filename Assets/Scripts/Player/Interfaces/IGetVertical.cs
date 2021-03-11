@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IGetInput
+public interface IGetVertical
 {
-    int GetLane(int lane);
+    Vector3 Jump(Vector3 velocity);
+    void Slide();
+
 }

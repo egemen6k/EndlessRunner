@@ -2,8 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PCInput : MonoBehaviour, IGetInput
+public class PCInput : MonoBehaviour, IGetHorizontal,IGetVertical
 {
+    [SerializeField]
+    private float _jumpForce = 25f;
+    [SerializeField]
+    private float _gravity = 0.4f;
+    private float _yVelocity;
+    private CharacterController _cc;
+
+    private void Start()
+    {
+        _cc = GetComponent<CharacterController>();
+        if (_cc == null)
+        {
+            Debug.LogError("Character Controller is null.");
+        }
+    }
     public int GetLane(int lane)
     {
         if (Input.GetKeyDown(KeyCode.RightArrow))
@@ -24,5 +39,37 @@ public class PCInput : MonoBehaviour, IGetInput
             }
         }
         return lane;
+    }
+
+    public Vector3 Jump(Vector3 velocity)
+    {
+        if (_cc.isGrounded)
+        {
+            if (Input.GetKeyDown(KeyCode.UpArrow))
+            {
+                _yVelocity = _jumpForce;
+            }
+        }
+        else
+        {
+            _yVelocity -= _gravity;
+        }
+        velocity.y = _yVelocity;
+        return velocity;
+    }
+
+    public void Slide()
+    {
+        if (_cc.isGrounded)
+        {
+            if (Input.GetKeyDown(KeyCode.DownArrow))
+            {
+                
+            }
+        }
+        else
+        {
+            
+        }
     }
 }

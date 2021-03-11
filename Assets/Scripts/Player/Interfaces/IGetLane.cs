@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IGetLane
+public interface IGetPosition
 {
-    Vector3 GetPosition(int lane,float laneDistance);
+    Vector3 MoveThere(int lane,float laneDistance);
 }

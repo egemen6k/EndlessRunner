@@ -11,9 +11,9 @@ public class PlayerController : MonoBehaviour
     private float _speed = 8f;
 
     private CharacterController _cc;
-    private IGetInput GetInput;
-    private IGetLane GetLane;
-    private IGetJump GetJump;
+    private IGetHorizontal GetHorizontal;
+    private IGetVertical GetVertical;
+    private IGetPosition GetPosition;
     private Vector3 _velocity;
     private int _desiredLane = 1; //0: left, 1: middle, 2: right
 
@@ -25,32 +25,33 @@ public class PlayerController : MonoBehaviour
             Debug.LogError("Character Controller is null.");
         }
 
-        GetInput = GetComponent<IGetInput>();
-        if (GetInput == null)
+        GetHorizontal = GetComponent<IGetHorizontal>();
+        if (GetHorizontal == null)
         {
             Debug.LogError("Input Interface is null");
         }
 
-        GetLane = GetComponent<IGetLane>();
-        if (GetLane == null)
+        GetVertical = GetComponent<IGetVertical>();
+        if (GetVertical == null)
+        {
+            Debug.LogError("Jumping interface is null");
+        }
+
+        GetPosition = GetComponent<IGetPosition>();
+        if (GetPosition == null)
         {
             Debug.LogError("Lane Selection Interface is null");
         }
 
-        GetJump = GetComponent<IGetJump>();
-        if (GetJump == null)
-        {
-            Debug.LogError("Jumping interface is null");
-        }
         _velocity = Vector3.forward * _speed;
     }
 
     private void Update()
     {
-        _desiredLane = GetInput.GetLane(_desiredLane);
-        transform.position = GetLane.GetPosition(_desiredLane, _laneDistance);
+        _desiredLane = GetHorizontal.GetLane(_desiredLane);
+        transform.position = GetPosition.MoveThere(_desiredLane, _laneDistance);
         _cc.center = _cc.center;
-        _velocity = GetJump.Jump(_velocity);
+        _velocity = GetVertical.Jump(_velocity);
         _cc.Move(_velocity * Time.deltaTime);
     }
 }

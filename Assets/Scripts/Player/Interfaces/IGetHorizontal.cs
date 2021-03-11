@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IGetJump
+public interface IGetHorizontal
 {
-    Vector3 Jump(Vector3 velocity);
+    int GetLane(int lane);
 }

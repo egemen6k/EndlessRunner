@@ -18,4 +18,8 @@ Runner Game
 +Replay,Quit functions implemented.
 +UI Panel implemented.
 -----
-
++Touch Input implemented
++Interface changings
++Horizontal,Vertical,Jump,Slide seperated.
+*** Maybe need to look at Touch Jump method because of Vector3.zero hardcoding
+-----
