@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private float _laneDistance = 4f;
     [SerializeField]
-    private float _speed = 5f;
+    private float _speed = 8f;
 
     private CharacterController _cc;
     private IGetInput GetInput;

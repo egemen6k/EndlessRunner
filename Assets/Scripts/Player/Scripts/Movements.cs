@@ -7,7 +7,7 @@ public class Movements : MonoBehaviour, IGetLane, IGetJump
     [SerializeField]
     private float _jumpForce = 25f;
     [SerializeField]
-    private float _gravity = 1f;
+    private float _gravity = 0.4f;
     private float _yVelocity;
     private CharacterController _cc;
 
