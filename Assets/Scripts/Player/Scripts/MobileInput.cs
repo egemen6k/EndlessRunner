@@ -4,14 +4,12 @@ using UnityEngine;
 
 public class MobileInput : MonoBehaviour,IGetHorizontal,IGetVertical
 {
-    private Vector3 _firstPressPos;
-    private Vector3 swipeDirection;
-
     [SerializeField]
     private float _jumpForce = 25f;
     [SerializeField]
     private float _gravity = 0.4f;
     private float _yVelocity;
+    private Vector3 _firstPressPos,_swipeDirection;
     private CharacterController _cc;
 
     private void Start()
@@ -35,10 +33,10 @@ public class MobileInput : MonoBehaviour,IGetHorizontal,IGetVertical
 
                 case TouchPhase.Ended:
                     Vector3 _releasePos = Camera.main.ScreenToWorldPoint(new Vector3(touch.position.x, touch.position.y, 10));
-                    swipeDirection = _releasePos - _firstPressPos;
-                    swipeDirection.Normalize();
+                    _swipeDirection = _releasePos - _firstPressPos;
+                    _swipeDirection.Normalize();
 
-                    if (swipeDirection.x < 0 && swipeDirection.y > -0.5f && swipeDirection.y < 0.5f)
+                    if (_swipeDirection.x < 0 && _swipeDirection.y > -0.5f && _swipeDirection.y < 0.5f)
                     {
                         lane--;
                         if (lane == -1)
@@ -46,7 +44,7 @@ public class MobileInput : MonoBehaviour,IGetHorizontal,IGetVertical
                             lane = 0;
                         }
                     }
-                    if (swipeDirection.x > 0 && swipeDirection.y > -0.5f && swipeDirection.y < 0.5f)
+                    if (_swipeDirection.x > 0 && _swipeDirection.y > -0.5f && _swipeDirection.y < 0.5f)
                     {
                         lane++;
                         if (lane == 3)
@@ -64,10 +62,10 @@ public class MobileInput : MonoBehaviour,IGetHorizontal,IGetVertical
     {
         if (_cc.isGrounded)
         {
-            if (swipeDirection.y > 0 && swipeDirection.x > -0.5f && swipeDirection.x < 0.5f)
+            if (_swipeDirection.y > 0 && _swipeDirection.x > -0.5f && _swipeDirection.x < 0.5f)
             {
                 _yVelocity = _jumpForce;
-                swipeDirection = Vector3.zero;
+                _swipeDirection = Vector3.zero;
             }
         }
         else
@@ -80,7 +78,7 @@ public class MobileInput : MonoBehaviour,IGetHorizontal,IGetVertical
 
     public void Slide()
     {
-        if (swipeDirection.y < 0 && swipeDirection.x > -0.5f && swipeDirection.x < 0.5f)
+        if (_swipeDirection.y < 0 && _swipeDirection.x > -0.5f && _swipeDirection.x < 0.5f)
         {
             Debug.Log("DOWN");
         }

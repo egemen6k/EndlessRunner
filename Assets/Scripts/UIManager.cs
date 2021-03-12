@@ -5,9 +5,14 @@ using UnityEngine;
 public class UIManager : MonoBehaviour
 {
     [SerializeField]
-    private GameObject gameOverPanel;
+    private GameObject _gameOverPanel, _textStart;
     public void GameOver()
     {
-        gameOverPanel.SetActive(true);
+        _gameOverPanel.SetActive(true);
+    }
+
+    public void GameStarted()
+    {
+        _textStart.SetActive(false);
     }
 }

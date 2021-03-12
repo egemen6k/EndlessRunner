@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
 {
     private UIManager _uiManager;
     private TileManager _tileManager;
+    public bool _isGameStarted = false;
 
     void Start()
     {
@@ -22,6 +23,15 @@ public class GameManager : MonoBehaviour
         }
 
         Time.timeScale = 1f;
+    }
+
+    private void Update()
+    {
+        if (Input.touchCount > 0 || Input.anyKey)
+        {
+            _isGameStarted = true;
+            _uiManager.GameStarted();
+        }
     }
 
     public void GameOver()

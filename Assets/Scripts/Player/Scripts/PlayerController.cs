@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     private float _speed = 8f;
 
     private CharacterController _cc;
+    private GameManager _gm;
     private IGetHorizontal GetHorizontal;
     private IGetVertical GetVertical;
     private IGetPosition GetPosition;
@@ -23,6 +24,12 @@ public class PlayerController : MonoBehaviour
         if (_cc == null)
         {
             Debug.LogError("Character Controller is null.");
+        }
+
+        _gm = GameObject.Find("GameManager").GetComponent<GameManager>();
+        if (_gm == null)
+        {
+            Debug.LogError("Game Manager is null.");
         }
 
         GetHorizontal = GetComponent<IGetHorizontal>();
@@ -42,12 +49,15 @@ public class PlayerController : MonoBehaviour
         {
             Debug.LogError("Lane Selection Interface is null");
         }
-
-        _velocity = Vector3.forward * _speed;
     }
 
     private void Update()
     {
+        if (!_gm._isGameStarted)
+        {
+            return;
+        }
+        _velocity = Vector3.forward * _speed;
         _desiredLane = GetHorizontal.GetLane(_desiredLane);
         transform.position = GetPosition.MoveThere(_desiredLane, _laneDistance);
         _cc.center = _cc.center;
