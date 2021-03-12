@@ -27,3 +27,7 @@ Runner Game
 +Start game implemented
 +Starting animation implemented
 -----
+*** Tiles need more obstacles.
+*** Tiles need more obstacles.
+*** Tiles need more obstacles.
+-----
