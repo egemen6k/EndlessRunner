@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     private float _laneDistance = 4f;
     [SerializeField]
     private float _speed = 8f;
+    private float _maxSpeed = 40f;
 
     private CharacterController _cc;
     private GameManager _gm;
@@ -57,7 +58,13 @@ public class PlayerController : MonoBehaviour
         {
             return;
         }
+
         _velocity = Vector3.forward * _speed;
+        if (_speed < _maxSpeed)
+        {
+            _speed += 0.1f * Time.deltaTime;
+        }
+
         _desiredLane = GetHorizontal.GetLane(_desiredLane);
         transform.position = GetPosition.MoveThere(_desiredLane, _laneDistance);
         _cc.center = _cc.center;

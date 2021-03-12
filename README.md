@@ -31,3 +31,6 @@ Runner Game
 *** Tiles need more obstacles.
 *** Tiles need more obstacles.
 -----
++Jump = 10, Gravity = 0.13
++Slide implemented
+-----

@@ -76,11 +76,15 @@ public class MobileInput : MonoBehaviour,IGetHorizontal,IGetVertical
         return velocity;
     }
 
-    public void Slide()
+    public bool Slide()
     {
         if (_swipeDirection.y < 0 && _swipeDirection.x > -0.5f && _swipeDirection.x < 0.5f)
         {
-            Debug.Log("DOWN");
+            return true;
+        }
+        else
+        {
+            return false;
         }
     }
 }

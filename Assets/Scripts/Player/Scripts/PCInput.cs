@@ -58,18 +58,15 @@ public class PCInput : MonoBehaviour, IGetHorizontal,IGetVertical
         return velocity;
     }
 
-    public void Slide()
+    public bool Slide()
     {
-        if (_cc.isGrounded)
+        if (Input.GetKeyDown(KeyCode.DownArrow))
         {
-            if (Input.GetKeyDown(KeyCode.DownArrow))
-            {
-                
-            }
+            return true; 
         }
         else
         {
-            
+            return false;
         }
     }
 }
