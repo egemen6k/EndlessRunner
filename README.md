@@ -23,3 +23,7 @@ Runner Game
 +Horizontal,Vertical,Jump,Slide seperated.
 *** Maybe need to look at Touch Jump method because of Vector3.zero hardcoding
 -----
++Animations implemented (idle,run,jump)
++Start game implemented
++Starting animation implemented
+-----
