@@ -39,3 +39,7 @@ Runner Game
 +Coin System
 -----
 +Post Processing & Curved Shader
+-----
++Jump-Slide bug fixed for mobile
++Starting game touch bug fixed
+-----

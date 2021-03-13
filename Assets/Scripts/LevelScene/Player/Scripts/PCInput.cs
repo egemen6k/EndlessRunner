@@ -5,9 +5,9 @@ using UnityEngine;
 public class PCInput : MonoBehaviour, IGetHorizontal,IGetVertical
 {
     [SerializeField]
-    private float _jumpForce = 25f;
+    private float _jumpForce = 10f;
     [SerializeField]
-    private float _gravity = 0.4f;
+    private float _gravity = 0.17f;
     private float _yVelocity;
     private CharacterController _cc;
 

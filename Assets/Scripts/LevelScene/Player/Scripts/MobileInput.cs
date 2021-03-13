@@ -5,9 +5,9 @@ using UnityEngine;
 public class MobileInput : MonoBehaviour,IGetHorizontal,IGetVertical
 {
     [SerializeField]
-    private float _jumpForce = 25f;
+    private float _jumpForce = 10f;
     [SerializeField]
-    private float _gravity = 0.4f;
+    private float _gravity = 0.17f;
     private float _yVelocity;
     private Vector3 _firstPressPos,_swipeDirection;
     private CharacterController _cc;
@@ -80,6 +80,7 @@ public class MobileInput : MonoBehaviour,IGetHorizontal,IGetVertical
     {
         if (_swipeDirection.y < 0 && _swipeDirection.x > -0.5f && _swipeDirection.x < 0.5f)
         {
+            _swipeDirection = Vector3.zero;
             return true;
         }
         else

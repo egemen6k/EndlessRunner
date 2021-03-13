@@ -29,9 +29,15 @@ public class GameManager : MonoBehaviour
     {
         if (Input.touchCount > 0 || Input.anyKey)
         {
-            _isGameStarted = true;
-            _uiManager.GameStarted();
+            StartCoroutine(WaitAndStart());
         }
+    }
+
+    IEnumerator WaitAndStart()
+    {
+        yield return new WaitForSeconds(0.1f);
+        _isGameStarted = true;
+        _uiManager.GameStarted();
     }
 
     public void GameOver()
