@@ -34,3 +34,7 @@ Runner Game
 +Jump = 10, Gravity = 0.13
 +Slide implemented
 -----
++Sound effects
++Main Menu
++Coin System
+-----

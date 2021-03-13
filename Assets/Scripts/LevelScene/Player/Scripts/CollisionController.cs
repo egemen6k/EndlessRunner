@@ -28,6 +28,7 @@ public class CollisionController : MonoBehaviour
         if (hit.transform.CompareTag("Obstacle"))
         {
             _gameManager.GameOver();
+            FindObjectOfType<AudioManager>().PlaySound("GameOver");
         }
     }
 }
