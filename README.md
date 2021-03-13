@@ -43,3 +43,4 @@ Runner Game
 +Jump-Slide bug fixed for mobile
 +Starting game touch bug fixed
 -----
+*** FINAL
